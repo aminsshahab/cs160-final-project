@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Welcome to Our Medical App</title>
+</head>
+<style type="text/css">
+	body {
+	  	/* main screen */
+		position: relative;
+		width: 1440px;
+		height: 800px;
+		background: #C5FDCE;
+	}
+
+	.corgicontainer {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: left;
+		align-items: flex-end;
+		padding: 10px;
+	}
+	.container {
+		width: 80%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		padding: 5px;
+	}
+	.navigate {
+		/* Ellipse */
+		border-radius: 50%;
+		width: 18%;
+		height: 194px;
+		margin: 30px;
+	}
+
+	.speech-bubble {
+		right:30px;
+		background: #db8b8b;
+		border-radius: 40px;
+		width: 300px;
+		height: 100px;
+		align-self: flex-start;
+		text-align: center;
+		padding: 30px;
+	}
+
+	.speech-bubble:after {
+		content: '';
+		left: 0;
+		top: 50%;
+		width: 0;
+		height: 0;
+		border: 21px solid transparent;
+		border-right-color: #db8b8b;
+		border-left: 0;
+		border-bottom: 0;
+		margin-top: -10.5px;
+		margin-left: -21px;
+		position: relative;
+		left: 0px;
+	}
+
+</style>
+<body>
+	<!-- corgi, house and bubbly text !-->
+	<div class="corgicontainer">
+		<img src="../../static/stocks/house.png" width="300.57px" height="289px" left="50px"/>
+		<img src="../../static/stocks/nursecorgi.png" width="300px" height="200px"/>
+		<div class="speech-bubble">
+			Did you know? Art helps heal our spirit and lift up our moods, thus help with our physical state as well!
+		</div>
+	</div>
+
+	<div class="container">
+		<button class="navigate" id="joinchannel"><a href="index.html">
+			Join Channel
+		</button>
+		<button class="navigate" id="support">
+			Support Someone
+		</button>
+		<button class="navigate" id="viewgallery">
+			View Gallery
+		</button>
+		<button class="navigate" id="connect">
+			Connect me with someone
+		</button>
+	</div>
+
+
+
+</body>
+</html>

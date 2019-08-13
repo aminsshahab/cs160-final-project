@@ -1,0 +1,114 @@
+@import url({% static 'fonts/style.css' %});
+
+body {
+  font-family: Apercu Regular;
+}
+
+h1 {
+  margin: 5px;
+  line-height: 0.7em;
+  text-align: left;
+}
+
+h4 {
+  margin: 0;
+  font-size: 13px;
+}
+
+p {
+  margin: 0;
+  font-size: 12px;
+}
+
+#wrap {
+  margin: 5px 15px;
+  display: inline-block;
+  position: relative;
+  height: 10px;
+  float: left;
+  padding: 0;
+  position: relative;
+}
+
+#browse-wrap {
+  position: relative;
+  top: 65px;
+  left: 10px;
+}
+
+input[type="text"] {
+  height: 52px;
+  font-size: 55px;
+  display: inline-block;
+  font-family: "Apercu Regular";
+  font-weight: 100;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 3px;
+  padding-left: 70px;
+  width: 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: none;
+  z-index: 3;
+  transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+  cursor: pointer;
+}
+
+input[type="text"]:focus:hover {
+  border-bottom: 1px solid black;
+}
+
+input[type="text"]:focus {
+  width: 700px;
+  z-index: 1;
+  border-bottom: 1px solid black;
+  cursor: text;
+}
+
+input[type="submit"] {
+  height: 67px;
+  width: 63px;
+  display: inline-block;
+  color:red;
+  float: left;
+  background: url(https://img.icons8.com/small/64/000000/search.png) center center no-repeat;
+  background-size: 40px;
+  text-indent: -10000px;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+  cursor: pointer;
+  transition: opacity .4s ease;
+}
+
+input[type="submit"]:hover {
+  opacity: 0.8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+width: 1400px;
+}
+
+.column {
+  float: left;
+  width: 12.5%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+  padding-bottom: 5px;
+}

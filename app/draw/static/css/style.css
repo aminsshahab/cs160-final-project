@@ -1,0 +1,430 @@
+body {
+  /* main screen */
+  position: relative;
+  width: 1440px;
+  height: 900px;
+
+  background: #C5FDCE;
+}
+
+h3 {
+  font-family: Apercu Regular;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* SEARCH */
+.search-overlay {
+  height: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 0;
+}
+
+.search-overlay a {
+  padding: 0px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.search-overlay-content {
+  position: relative;
+  width: 100%;
+  top: 0;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.search-overlay .closebtn {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 100px;
+  font-size: 40px;
+  color: black;
+}
+
+.search-overlay a:hover, .search-overlay a:focus {
+  color: #f1f1f1;
+}
+
+.search-toggle-btn {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 12px 16px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+#search-options {
+  position: absolute;
+  left: auto;
+}
+
+/* ARCHIVE */
+.archive-overlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  background-color: white;
+  background-color: white;
+  overflow: hidden;
+  transition: 0.5s;
+  padding-top: 0px;
+}
+
+.archive-overlay a {
+  padding: 0px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.archive-overlay-content {
+  position: relative;
+  width: 100%;
+  top: 5%;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.archive-overlay .closebtn {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  font-size: 20px;
+  color: white;
+}
+
+.archive-overlay a:hover, .archive-overlay a:focus {
+  color: #f1f1f1;
+}
+
+.archive-toggle-btn {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 12px 16px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+#archive-options {
+  position: absolute;
+  left: auto;
+}
+
+/* MUSIC PLAYER */
+
+.music-overlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  overflow-y: hidden;
+  transition: 0.5s;
+}
+
+.music-overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.music-overlay-content {
+  position: relative;
+  top: 5%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.music-overlay .closebtn {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  font-size: 20px;
+  color: white;
+}
+
+.music-overlay a:hover, .music-overlay a:focus {
+  color: #f1f1f1;
+}
+
+.music-toggle-btn {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 12px 16px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* USER SETTINGS */
+
+.settings-overlay {
+  font-family: 'Apercu Regular';
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.settings-overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.settings-overlay a:hover, .settings-overlay a:focus {
+  color: black;
+}
+
+.settings-overlay-content {
+  position: relative;
+  top: 5%;
+  width: 90%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.settings-overlay .closebtn {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  color: black;
+  font-size: 16px;
+}
+
+.settings-toggle-btn {
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 12px 16px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.settings-menu-spacing{
+      padding-top: 150px;
+    }
+
+.settings-log-out{
+      margin-left: 1em;
+      text-transform: uppercase;
+      padding: 1em;
+      background: transparent;
+      border: 1px solid;
+      outline: none;
+      width: 80%;
+    }
+
+/* SHARE & EXPORT */
+
+.share-overlay {
+  font-family: 'Apercu Regular';
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.share-overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.share-overlay a:hover, .share-overlay a:focus {
+  color: black;
+}
+
+.share-overlay-content {
+  position: relative;
+  top: 25%;
+  width: 90%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.share-overlay .closebtn {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  color: black;
+  font-size: 16px;
+}
+
+.share-toggle-btn {
+  position: absolute;
+  left: 0;
+  bottom: 50%;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 12px 16px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.social {
+  font-size: 30px;
+  padding: 20px;
+    }
+
+.share-menu-spacing{
+      padding-top: 150px;
+    }
+
+.share-log-out{
+      margin-left: 1em;
+  margin-bottom: 10px;
+      text-transform: uppercase;
+      padding: 1em;
+      background: transparent;
+      border: 1px solid;
+      outline: none;
+      width: 80%;
+    }
+
+/* Starter code */
+/* TOOL PALETTE */
+
+  .palette-overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0%;
+  right: 0;
+  background-color: white;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  }
+
+
+  .palette-overlay a {
+  padding: 9px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+  }
+
+  .palette-overlay a:hover, .palette-overlay a:focus {
+  color: black;
+  }
+
+  .palette-overlay .closebtn {
+  position: relative;
+  z-index: 1;
+  top: 50%;
+  left: 5px;
+  color: black;
+  font-size: 16px;
+  }
+
+  .palette-overlay .undo-button {
+      position:absolute;
+      right:2px;
+      bottom: 0%;
+      background-color: white;
+      border: none;
+      color: black;
+      padding: 6px 13px;
+      font-size: 33px;
+      cursor: pointer;
+    }
+
+  .palette-toggle-btn {
+      position: absolute;
+      right: 0;
+      bottom: 50%;
+      background-color: white;
+      border: none;
+      color: black;
+      padding: 12px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+		#color-palette {
+      float: right;
+      margin-top: 1px;
+      width: 270px;
+      height: 200px;
+      background-color: white;
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+		}
+
+		.swatch {
+			width: 55px;
+			height: 55px;
+			-moz-border-radius: 12px;
+			-webkit-border-radius: 12px;
+			border-radius: 12px;
+			margin: 3px;
+      position: relative;
+		}
+
+
+		#myCanvas {
+			padding-left: 0;
+		    padding-right: 0;
+		    margin-left: auto;
+		    margin-right: auto;
+		    display: block;
+		}

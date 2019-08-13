@@ -1,0 +1,93 @@
+body {
+  overflow: hidden;
+  padding-left: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.main {
+  max-width: 500px;
+  margin: auto;
+}
+
+h4 {
+  font-family: Apercu Regular;
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-bottom: 0px;
+  margin-top: 0px
+}
+
+p {
+  font-family: Apercu Regular;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  margin-top: 0px
+}
+
+.archive-row {
+  margin: 0px -1px;
+}
+
+/* Add padding BETWEEN each archive-column */
+.archive-row,
+.archive-row > .archive-column {
+  padding: 2px;
+}
+
+/* Create eight equal archive-columns that floats next to each other */
+.archive-column {
+  float: left;
+  width: 12.5%;
+  display: none; /* Hide all elements by default */
+}
+
+/* Clear floats after rows */ 
+.archive-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+.archive-content {
+  background-color: white;
+  padding: 0px;
+  text-align: left;
+}
+
+/* The "show" class is added to the filtered elements */
+.archive-show {
+  display: block;
+}
+
+/* Style the buttons */
+.archive-btn {
+  border: none;
+  outline: none;
+  padding: 5px 16px;
+  background-color: white;
+  cursor: pointer;
+  font-family: Apercu Regular;
+  font-size: 15px;
+}
+
+.archive-btn:hover {
+  background-color: white;
+  color: black;
+  border-bottom: 2px solid blue;
+}
+
+.archive-btn.active {
+  background-color: white;
+  color: black;
+  border-bottom: 2px solid blue;
+}
+
+.archive-menu-spacing{
+  padding-top: 30px;
+  padding-bottom: 10px;
+    }
