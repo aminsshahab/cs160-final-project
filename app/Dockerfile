@@ -11,16 +11,17 @@ ENV PYTHONUNBUFFERED 1
 # install psycopg2
 RUN apk update \
 	&& apk upgrade \
-    && apk add --virtual build-deps gcc python3-dev musl-dev \
+    && apk add --no-cache --virtual build-deps gcc python3-dev musl-dev libffi-dev \
     && apk add postgresql-dev \
-    && pip install psycopg2 \
-    && apk del build-deps
+    && pip install psycopg2 
 
 # install dependencies
 RUN pip install --upgrade pip
-RUN pip install pipenv
+RUN pip install pipenv websockets django channels channels_redis
 COPY ./Pipfile /usr/src/app/Pipfile
 RUN pipenv install --skip-lock --system --dev
+
+RUN apk del build-deps
 
 # copy entrypoint.sh
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh

@@ -8,6 +8,8 @@ services:
       - ./app/:/usr/src/app/
     ports:
       - 8000:8000
+    links:
+      - redis:redis
     environment:
       - DEBUG=1
       - SECRET_KEY=root
@@ -20,6 +22,12 @@ services:
       - DATABASE=postgres
     depends_on:
       - db
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
   db:
     image: postgres:11.2-alpine
     volumes:
@@ -31,3 +39,4 @@ services:
 
 volumes:
   postgres_data:
+  redisdata:
