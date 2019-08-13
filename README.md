@@ -13,4 +13,4 @@ This application is containerized using Docker, so running it is quite simple.
 
 - Launch the container through Docker: ```docker-compose up```
 
-- View the project in a browser: ```http://0.0.0.0:8000```
+- View the project in a browser: ```http://0.0.0.0:8000/draw```
