@@ -198,7 +198,8 @@
       history: ["#000000"], 
       options: [],
       $container: $('#color-palette')
-    }
+    };
+    var path;
     function createColorPalette(colors) {
       for (var i = colors.length - 1; i >= 0; i--) {
         var $swatch = $("<div>").css("background-color", colors[i]).addClass("swatch");
@@ -261,23 +262,45 @@
           $toggleButton.on('click', () => {
             $colorPalette.toggle();
           })
-        }
-    var color = $(function() {
-      var stop = true;
-      setInterval(function() {color = cp.history[cp.history.length-1];}, 1000);});
+
+          var color = cp.history[cp.history.length-1];
+    }
+
+    $("#color-palette").on("click", '.swatch', function() {
+      color = cp.history[cp.history.length-1];
+    });
+
     var socket = new WebSocket('ws://' + window.location.host + '/ws/draw/');
-    //OG it was tool.onMouseMove
-    
+
+    tool.onMouseDown = function(event) {
+        path = new paper.Path();
+        path.add(event.point);
+        path.strokeColor = color;
+    }
+
     tool.onMouseDrag = function(event) {
-//       var path = new Path();
-//       path.strokeColor = color;
-//       path.add(event.middlePoint);
-//       path.position += event.delta;
-      var xPos = event.point.x;
-      var yPos = event.point.y;
-      var message = JSON.stringify({x: xPos, y:yPos, color: color, user: userID, url: url});
+        path.add(event.point);
+    }
+
+    tool.onMouseUp = function(event){
+      var message = JSON.stringify({pathData: path.pathData, color: color, user: userID, url: url});
       socket.send(message);
     }
+
+//     var color = $(function() {
+//       var stop = true;
+//       setInterval(function() {color = cp.history[cp.history.length-1];}, 1000);});
+    
+//     tool.onMouseDrag = function(event) {
+// //       var path = new Path();
+// //       path.strokeColor = color;
+// //       path.add(event.middlePoint);
+// //       path.position += event.delta;
+//       var xPos = event.point.x;
+//       var yPos = event.point.y;
+//       var message = JSON.stringify({x: xPos, y:yPos, color: color, user: userID, url: url});
+//       socket.send(message);
+//     }
     
     socket.onmessage = function(receivedMessage) {
       var data = JSON.parse(receivedMessage.data);
@@ -289,12 +312,12 @@
       if (url == "http://p3-websockets-edrees-g-edreesgul815250.codeanyapp.com/draw/?size=large") {
         users[data.user].strokeColor = data.color;
         users[data.user].strokeWidth = 10;
-        var point = new paper.Point(data.x, data.y);
+        var point = new paper.Point(data.pathData);
         users[data.user].add(point);
       } else if (data.user == userID) {
         users[data.user].strokeColor = data.color;
         users[data.user].strokeWidth = 10;
-        var point = new paper.Point(data.x, data.y);
+        var point = new paper.Point(data.pathData);
         users[data.user].add(point);
       }
     };   
