@@ -188,22 +188,58 @@
   function closeForm() {
     document.getElementById("myForm").style.display = "none";
   }
-  
-  window.onload = function() {
-    var canvas = document.getElementById('myCanvas');
-    paper.setup(canvas);
-    var tool = new paper.Tool();
-    var url = window.location.href;
-    var users = {};
-    var userID = Math.random(); 
-    var path;
 
-    var cp = {
-      history: ["#000000"], 
-      options: [],
-      $container: $('#color-palette')
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
     }
+    
+    return color;
+  }
 
+  var canvas = document.getElementById('myCanvas');
+  paper.setup(canvas);
+
+  var cp = {
+    history: ["#000000"], 
+    options: [],
+    $container: $('#color-palette')
+  }
+
+  var tool = new paper.Tool();
+  var url = window.location.href;
+  var users = {};
+  var userID = Math.random(); 
+  var color = cp.history[cp.history.length-1];
+  var path;
+
+  var socket = new WebSocket('ws://' + window.location.host + '/ws/draw/');
+
+  tool.onMouseDown = function(event) {
+      path = new paper.Path();
+      path.add(event.point);
+      path.strokeColor = color;
+  }
+
+  tool.onMouseDrag = function(event) {
+    path.add(event.point);
+  }
+
+  tool.onMouseUp = function(event){
+    var message = JSON.stringify({pathData: path.pathData, color: color, user: userID, url: url});
+    socket.send(message);
+  }
+  
+  socket.onmessage = function(receivedMessage) {
+    var data = JSON.parse(receivedMessage.data);
+    path = new paper.Path(data.pathData);
+    path.strokeColor = data.color;
+  };   
+
+  window.onload = function() {
     function createColorPalette(colors) {
       for (var i = colors.length - 1; i >= 0; i--) {
         var $swatch = $("<div>").css("background-color", colors[i]).addClass("swatch");
@@ -233,80 +269,29 @@
       $(".white_button").append($swatch);
     } 
 
-    function init(custom) {
-      paper.setup(canvas);
-      getColorsCreatePalette();
-      createEraser();
-    }
-    init(true);
-    {
-      let $saveButton = $(".save_button");
-      $saveButton.on('click', () => {
-        window.print();
-        return false;
-      })
-//           let $chatbtn = $(".open-button");
-//           let $chatbox = $("#myForm");
-//           $chatbtn.on('click', () => {
-//             $chatbtn.hide();
-//             $chatbox.show();
-//           })
-//           let $closebtn = $(".btn.cancel");
-//           $closebtn.on('click'), () => {
-//             $chatbox.hide();
-//             $chatbtn.show();
-//           }
-
-      let $resetButton = $(".reset_button");
-      $resetButton.on('click', () => {
-        location.reload();
-      })
-
-      let $toggleButton = $(".hide_show_button");
-      let $colorPalette = $("#color-palette")
-      $toggleButton.on('click', () => {
-        $colorPalette.toggle();
-      })
-
-      var color = cp.history[cp.history.length-1];
-    }
-
     $("#color-palette").on("click", '.swatch', function() {
       color = cp.history[cp.history.length-1];
     });
 
-    var socket = new WebSocket('ws://' + window.location.host + '/ws/draw/');
+    getColorsCreatePalette();
+    createEraser();
 
-    tool.onMouseDown = function(event) {
-        path = new paper.Path();
-        path.add(event.point);
-        path.strokeColor = color;
-    }
+    let $saveButton = $(".save_button");
+    $saveButton.on('click', () => {
+      window.print();
+      return false;
+    })
 
-    tool.onMouseDrag = function(event) {
-        path.add(event.point);
-    }
+    let $resetButton = $(".reset_button");
+    $resetButton.on('click', () => {
+      location.reload();
+    })
 
-    tool.onMouseUp = function(event){
-      var message = JSON.stringify({pathData: path.pathData, color: color, user: userID, url: url});
-      socket.send(message);
-    }
-    
-    socket.onmessage = function(receivedMessage) {
-      var data = JSON.parse(receivedMessage.data);
-
-      if (!(data.user in users)) {
-        users[data.user] = new paper.Path();
-      };
-
-      users[data.user].strokeColor = data.color;
-      users[data.user].strokeWidth = 10;
-      var point = new paper.Point(data.pathData);
-      users[data.user].add(point);
-
-      console.log(data.user);
-
-    };   
+    let $toggleButton = $(".hide_show_button");
+    let $colorPalette = $("#color-palette")
+    $toggleButton.on('click', () => {
+      $colorPalette.toggle();
+    })
   }
   
 </script>
