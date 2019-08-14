@@ -8,6 +8,15 @@ def index(request):
 def channel(request):
     return render(request, 'draw/channel.html', {})
 
+def gallery(request):
+	return render(request, 'draw/gallery.html', {})
+
+def connect(request):
+	return render(request, 'draw/connect.html', {})
+
+def support(request):
+	return render(request, 'draw/support.html', {})
+
 def room(request, room_name):
     return render(request, 'draw/room.html', {
         'room_name_json': mark_safe(json.dumps(room_name))
