@@ -16,15 +16,22 @@
 
   <style type="text/css">
     
+    body {
+      position: relative;
+      width: 1440px;
+      height: 900px;
+
+      background: #C5FDCE;
+    }
     #color-palette {
       width: 35px;
       background-color: #f1f1f1;
       position: absolute;
-      top: 70px;
+      top: 100px;
       left: 163px;
     }
     .swatch {
-      width: 24px;
+      width: 30px;
       height: 24px;
       -moz-border-radius: 12px;
       -webkit-border-radius: 12px;
@@ -32,11 +39,16 @@
       margin: 3px;
     }
     #myCanvas {
+      top: 0px;
       padding-left: 0;
       padding-right: 0;
       margin-left: auto;
       margin-right: auto;
       display: block;
+      background-color: #FFFFFF;
+      border-color: #FFCBCB;
+      width: 1000px;
+      height: 600px;
     }
     .save_button {
       top: 0;
@@ -47,8 +59,18 @@
       border-radius: 25px;
       margin: 10px 10px;
     }
+
+    .button-container {
+      display: flex;
+      flex-direction: row;
+      /*flex-wrap: wrap-reverse;*/
+      justify-content: left;
+      /*align-items: flex-start;*/
+      align-content: flex-start;
+    }
+
     .reset_button {
-      top:0;
+      top:80;
       left: 75px;
       background-color: #F5F5F5;
       position: absolute;
@@ -57,7 +79,7 @@
       margin: 10px 10px;
     }
     .hide_show_button {
-      top: 60px;
+      top: 200px;
       left: 0px;
       background-color: #F5F5F5;
       position: absolute;
@@ -158,12 +180,20 @@
 <body>
   
   <!-- You may change the dimensions of this canvas -->
-  <canvas id="myCanvas" width="750px" height="750px"></canvas>
-  <div id="color-palette"></div>
-  <button class="white_button"> </button>
-  <button class="save_button">Save</button>
-  <button class="reset_button">Reset</button>
-  <button class="hide_show_button">Hide/Show</button>
+
+  <div class="button-container">
+    <img src="../../static/stocks/corgionbutt.png"/ width="250px" height="250px">
+    <canvas id="myCanvas"></canvas>
+    <div id="color-palette"></div>
+    <button class="white_button"> </button>
+    <button class="save_button">Save</button>
+    <button class="reset_button">Reset</button>
+    <button class="hide_show_button">Hide/Show</button>
+  </div>
+
+     
+    
+
   <button class="open-button" onclick="openForm()">Chat</button>
   <div class="chat-popup" id="myForm">
     <form action="/action_page.php" class="form-container">
