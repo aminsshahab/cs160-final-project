@@ -179,17 +179,17 @@
   
 </body>
   
-<script type="text/javascript" canvas="canvas">  
+<script type="text/javascript" canvas="canvas">
+
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+  
   window.onload = function() {
-
-    function openForm() {
-      document.getElementById("myForm").style.display = "block";
-    }
-
-    function closeForm() {
-      document.getElementById("myForm").style.display = "none";
-    }
-
     var canvas = document.getElementById('myCanvas');
     paper.setup(canvas);
     var tool = new paper.Tool();
@@ -304,7 +304,7 @@
       var point = new paper.Point(data.pathData);
       users[data.user].add(point);
 
-      console.log("teeter");
+      console.log(data.user);
 
     };   
   }
