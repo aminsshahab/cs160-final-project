@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    path('channel/', views.channel),
     url(r'^(?P<room_name>[^/]+)/$', views.room, name='room'),
 ]
 
