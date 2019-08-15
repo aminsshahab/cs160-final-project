@@ -102,8 +102,6 @@
     
     #myForm {
       top: 0;
-      right: 0;
-      position: absolute;
     }
     
 /*     Code for chatbox taken from: <https://www.w3schools.com/howto/howto_js_popup_chat.asp> */
@@ -124,9 +122,10 @@
       display: none;
       position: fixed;
       bottom: 0;
-      right: 15px;
       border: 3px solid #f1f1f1;
       z-index: 9;
+      border: none;
+      right: 1em;
     }
     /* Add styles to the form container */
     .form-container {
@@ -169,8 +168,35 @@
       opacity: 1;
     }
 
-    .home {
-      
+    .message-container {
+      background: #f1f1f1;
+      height: 15em;
+      margin-bottom: 1em;
+      position: relative;
+      padding-left: 0;
+    }
+
+    .chat-messages {
+      overflow:   auto;
+      position:   absolute;
+      bottom:     0;
+      width:      100%;
+      max-height: 200px;
+      padding-inline-start: 0;
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+
+    .chat-message {
+      width: 100%
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    ul {
+      list-style-type: none;
     }
     
     </style>
@@ -196,8 +222,12 @@
 
   <button class="open-button" onclick="openForm()">Chat</button>
   <div class="chat-popup" id="myForm">
-    <form action="/action_page.php" class="form-container">
+    <form action="" class="form-container">
       <h1>Chat</h1>
+      <div class="message-container">
+        <ul class="chat-messages" id="messageBody">
+        </ul>
+      </div>
       <label for="msg"><b>Message</b></label>
       <textarea placeholder="Type message.." name="msg" required></textarea>
       <button type="submit" class="btn">Send</button>
@@ -244,7 +274,8 @@
   var color = cp.history[cp.history.length-1];
   var path;
 
-  var socket = new WebSocket('ws://' + window.location.host + '/ws/draw/');
+  var drawSocket = new WebSocket('ws://' + window.location.host + '/ws/draw/');
+  var chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/');
 
   tool.onMouseDown = function(event) {
       path = new paper.Path();
@@ -258,14 +289,28 @@
 
   tool.onMouseUp = function(event){
     var message = JSON.stringify({pathData: path.pathData, color: color, user: userID, url: url});
-    socket.send(message);
+    drawSocket.send(message);
   }
   
-  socket.onmessage = function(receivedMessage) {
+  drawSocket.onmessage = function(receivedMessage) {
     var data = JSON.parse(receivedMessage.data);
     path = new paper.Path(data.pathData);
     path.strokeColor = data.color;
   };   
+
+  chatSocket.onmessage = function(receivedMessage) {
+    var data = JSON.parse(receivedMessage.data);
+    var chatMessageData = data.chatMessage
+
+    if (data.user == userID) {
+      $(".chat-messages").append("<li class='chat-message right'>" + chatMessageData + "</li>");
+    } else {
+      $(".chat-messages").append("<li class='chat-message'>" + chatMessageData + "</li>");
+    }
+
+    var messageBody = document.querySelector('#messageBody');
+    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+  }; 
 
   window.onload = function() {
     function createColorPalette(colors) {
@@ -320,6 +365,16 @@
     $toggleButton.on('click', () => {
       $colorPalette.toggle();
     })
+
+    $(".form-container").on("submit", function(e) {
+      e.preventDefault();
+
+      var chatMessage = $(this).serializeArray()[0]["value"];
+      
+      var message = JSON.stringify({chatMessage: chatMessage, user: userID});
+      chatSocket.send(message);
+    });
+
   }
   
 </script>
