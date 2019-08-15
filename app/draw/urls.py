@@ -10,6 +10,7 @@ urlpatterns = [
     path('connect/', views.connect),
     path('gallery/', views.gallery),
     path('support/', views.support),
+    #path('channel/index', views.index),
     url(r'^(?P<room_name>[^/]+)/$', views.room, name='room'),
 ]
 

@@ -214,50 +214,40 @@
       list-style-type: none;
     }
 
-    .corgi-overlay {
-
-    }
-
     img {
       position: relative;
       top: 0px;
       left: 0px;
-    } 
-
-    .corgibox {
-      left: ;
     }
 
-    .navi
-
-    .navigate-overlay {
-    position: absolute;
-    opacity: 0;
-    height: 300px;
-    width: 500px;
-    transition: .5s ease;
+  .corgi-button {
     background-color: #FFFFFF;
+  } 
+
+  .home-button {
+    position: absolute;
+    top: 549px;
+    left: 0px;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #FFC2C2;
   }
-  .navigate:hover .navigate-overlay {
-    opacity: 1;
-  }
-    
     </style>
 
 </head>
   
 <body>
-  
-  <!-- You may change the dimensions of this canvas -->
-        <img src="../../static/stocks/corgionbutt.png"/ width="210px" height="210px">
+    <img src="../../static/stocks/corgionbutt.png"/ width="210px" height="210px">
+    <button class="corgi-button"></button>
+
     <div class="canvas-container"><canvas id="myCanvas"></canvas></div>
-  
- 
     <div id="color-palette"></div>
+    <button class="home-button"><a href="index"><img src="../../static/stocks/house.png" width="40px" height="40px"></button>
     <button class="white_button"> </button>
     <button class="save_button">Save</button>
     <button class="reset_button">Reset</button>
     <button class="hide_show_button">Hide/Show</button>
+    
      
   <button class="open-button" onclick="openForm()">Chat</button>
   <div class="chat-popup" id="myForm">
