@@ -71,7 +71,9 @@
 		color: #3B6F8C;
 	}
 	.speech-bubble {
-		right:30px;
+		right:500px;
+		top: 50px;
+		position: absolute;
 		background: #db8b8b;
 		border-radius: 40px;
 		width: 300px;
@@ -88,8 +90,8 @@
 	}
 	.speech-bubble:after {
 		content: '';
-		left: -10;
-		top: 50%;
+		left: 300px;
+		top: 50px;
 		width: 0;
 		height: 0;
 		border: 21px solid transparent;
@@ -108,23 +110,27 @@
 	<div class="corgicontainer">
 		<img src="../../static/stocks/house.png" width="300.57px" height="289px" left="50px"/>
 		<img src="../../static/stocks/nursecorgi.png" width="300px" height="200px"/>
-		<div class="speech-bubble">
-			<div class="bubble-text">Did you know? Art helps heal our spirit and lift up our moods, thus help with our physical state as well!</div>
-		</div>
-	</div>
 
+	</div>
+		<div class="speech-bubble">
+		<div class="bubble-text">Did you know? Art helps heal our spirit and lift up our moods, thus help with our physical state as well!</div>
+		</div>
 	<div class="container">
 		<button class="navigate"><a href="channel">
 			<div class = "button-text">Join Drawing Channel </div><div class="navigate-overlay"><div class = "hover-text">This is where all we artists gather! Join in for a fun blast and make new friends. Let's get well together!</div></div>
 		</button>
 		<button class="navigate"><a href="support">
-			<div class = "button-text">Support Someone</div><div class="navigate-overlay"><div class = "hover-text">Someone in need might need your help. Let's support each other. Spread the love. Show some empathy. We corgis cheer for you!</div></div>
+<<<<<<< Updated upstream
+			<div class = "button-text">Send art to someone!</div><div class="navigate-overlay"><div class = "hover-text">Someone in need might need your help. Spread the love. Show some empathy. We corgis cheer for you!</div></div>
+=======
+			<div class = "button-text">Send art to someone</div><div class="navigate-overlay"><div class = "hover-text">Someone in need might need your help. Let's support each other. Spread the love. Show some empathy. We corgis cheer for you!</div></div>
+>>>>>>> Stashed changes
 		</button>
 		<button class="navigate"><a href="gallery">
-			<div class = "button-text">View Gallery</div><div class="navigate-overlay"><div class = "hover-text">Holy Van Gorgi! Let's see all the great artworks you and your friends have created!</div></div>
+			<div class = "button-text">Hoo sent me art?</div><div class="navigate-overlay"><div class = "hover-text">Holy Van Gorgi! Let's see all the great artworks your friends have sent you!</div></div>
 		</button>
 		<button class="navigate"><a href="connect">
-			<div class = "button-text">Connect with a hooman</div><div class="navigate-overlay"><div class = "hover-text">Woof, feeling blue? No worries, let's connect you with someone! We bet they'd be glad to meet you!</div></div>
+			<div class = "button-text">Art Thou Lonely?</div><div class="navigate-overlay"><div class = "hover-text">Woof, feeling blue? No worries, someone might be thinking of you and want to send you some art. Click to connect!</div></div>
 		</button>
 	</div>
 

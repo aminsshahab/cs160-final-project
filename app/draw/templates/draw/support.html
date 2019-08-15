@@ -7,4 +7,41 @@ body {
 	background: linear-gradient(180deg, #EEE8B6 0%, rgba(255, 255, 255, 0) 100%), rgba(253, 205, 225, 0.83);
 }
 
+.profile-pic {
+	position: absolute;
+	top: 50px;
+	left: 200px;
+}
+
+.profile-info {
+	border-radius: 40px;
+	background-color: #FFCEAA;
+	position: absolute;
+	left: 500px;
+	top: 60px;
+	width: 537.9px;
+	height: 244px;
+}
+
+.profile-info:after {
+		content: '';
+		left: -10;
+		top: 50%;
+		width: 0;
+		height: 0;
+		border: 21px solid transparent;
+		border-right-color: #FFCEAA;
+		border-left: 0;
+		border-bottom: 0;
+		margin-top: -10.5px;
+		margin-left: -21px;
+		position: absolute;
+		left: 0px;
+	}
+
 </style>
+
+<body>
+	<div class="profile-pic"><img src="../../static/stocks/julia.jpg"/></div>
+	<div class="profile-info">WHADDUP KID</div>
+</body>
