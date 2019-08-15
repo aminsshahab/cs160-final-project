@@ -16,6 +16,8 @@ urlpatterns = [
     path('channel/support', views.support),
     path('support/index', views.index),
     path('support/channel', views.channel),
+    path('support/support', views.support),
+    path('support/connect', views.connect),
     url(r'^(?P<room_name>[^/]+)/$', views.room, name='room'),
 ]
 

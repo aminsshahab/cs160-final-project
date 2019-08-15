@@ -12,7 +12,7 @@
 		}
 
 	.button {
-		background-color: #ff9999;
+		background-color: #C5FDCE;
 		color: black;
 		border: none;
   		padding: 15px 32px;
@@ -25,13 +25,13 @@
   		border-radius: 30px;
   		font-size: 30px;
   		
-  		font: Roboto;
+  		font-family: "Times New Roman", Times, serif;
 
   		position: absolute;
-		width: 368px;
-		height: 156px;
-		left: 50%;
-		top: 60%;
+		width: 571px;
+		height: 83px;
+		left: 536px;
+		top: 378px;
 		}
 
 
@@ -56,23 +56,22 @@
 			padding-right:21px;
 			margin-top:12px;
 
+
 		}
 
 
 
-		.uplaodpic {
+		img {
 			position: absolute;
 			cursor: pointer;
-			width: 300px;
-			height: 83px;
-			left: 200px;
-			top: 380px;
-			text-align: center;
-  			text-decoration: none;
-  			font-size: 25px;
+			width: 18%;
+			height: 40%;
 
-			background: #C4C4C4;
-			border-radius: 20px;
+			left: 235px;
+			top: 380px;
+			border-radius: 30px;
+			z-index:-1;
+			cursor: pointer;
 		}
 
 		
@@ -83,12 +82,25 @@
 			padding-top: 2%;
 		}
 
+		h3{
+			position: absolute;
+			left: 230px;
+			top: 380px;
+			padding-left: 50px;
+			padding-top:10px;
+			cursor: pointer;
+		}
+
+		h1{
+			font-size:30px;
+		}
+
 
 
 		.description{
 			position: absolute;
 			width: 600px;
-			height: 300px;
+			height: 262px;
 			left: 536px;
 			top: 50px;
 			text-align: center;
@@ -96,10 +108,15 @@
 
 			background: #C4C4C4;
 			border-radius: 30px;
-
+			padding: 20px;
 		}
 
+		::-webkit-input-placeholder {
+  			font-size:20px;
+  			font-style:italic;}
 
+		textarea { font-size: 20px; 
+			text-align: center;}
 </style>
 
 </head>
@@ -115,15 +132,25 @@
 
 
 		<div class="uplaodpic">
-			<div class="text">
-		Include a photos so others can draw you! </div>
+		<h3>Click Me<br>to uplaod a picture<br>for others to draw!</h3>
+		<img src="../../static/stocks/corgi-happy.gif" alt="dog">
 		</div>
-		<div class="description">
-			
-		</div>
+
+
+
+
+	<div class="description">
+  		<form>
+  			<textarea rows="10" cols="60" id="TITLE" placeholder="Tell us about yourself!"></textarea>
+  		</form>
+	</div>
 		
+
+
+
+
 		<div class="buttoncontainer">
-		<a href="LINKTOCONNECTIONGOESHERE" class="button" role="button" aria-pressed="true">Connect me With Someone</a>
+		<a href="support" class="button" role="button" aria-pressed="true"><h1>Connect Me With Someone!</h1></a>
 		</div>
 
 	</div>

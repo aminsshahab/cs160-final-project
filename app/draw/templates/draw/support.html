@@ -10,38 +10,115 @@ body {
 .profile-pic {
 	position: absolute;
 	top: 50px;
-	left: 200px;
+	left: 300px;
 }
 
 .profile-info {
 	border-radius: 40px;
 	background-color: #FFCEAA;
 	position: absolute;
-	left: 500px;
-	top: 60px;
+	left: 550px;
+	top: 50px;
 	width: 537.9px;
+	padding: 5px;
 	height: 244px;
+	text-align: center;
+}
+
+.dog-bubble {
+	border-radius: 40px;
+	background-color: #FFCEAA;
+	position: absolute;
+	left: 0px;
+	top: 50px;
+	width: 210px;
+	height: 289px;
+	padding: 5px;
+	text-align: center;
+}
+
+.dog-bubble:after {
+	content: '';
+	bottom: -10;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 21px solid transparent;
+	border-right-color: #FFCEAA;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -10.5px;
+	margin-left: -21px;
+	position: absolute;
+	left: 0px;
 }
 
 .profile-info:after {
-		content: '';
-		left: -10;
-		top: 50%;
-		width: 0;
-		height: 0;
-		border: 21px solid transparent;
-		border-right-color: #FFCEAA;
-		border-left: 0;
-		border-bottom: 0;
-		margin-top: -10.5px;
-		margin-left: -21px;
-		position: absolute;
-		left: 0px;
+	content: '';
+	left: -10;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 21px solid transparent;
+	border-right-color: #FFCEAA;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -10.5px;
+	margin-left: -21px;
+	position: absolute;
+	left: 0px;
+}
+
+.button-container {
+	top: 300px;
+	left: 250px;
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+	position: absolute;
+}
+
+.navigate {
+		/* Ellipse */
+		border-radius: 50%;
+		width: 18%;
+		height: 194px;
+		margin: 30px;
+		background: #FFECEC;
 	}
+
+.corgikun {
+	left: 0px;
+	top: 300px;
+	position: absolute;
+}
+
+.bubble-text {
+	font-size: 25px;
+	font-weight: normal;
+	color: #522424;
+}
 
 </style>
 
 <body>
+	<div class="corgikun"><img src="../../static/stocks/corgicat.gif" width="400px" height="200px" /></div>
 	<div class="profile-pic"><img src="../../static/stocks/julia.jpg"/></div>
-	<div class="profile-info">WHADDUP KID</div>
+	<div class="profile-info"><div class="bubble-text">Hi, I'm Julia, room 205. I've been in this hospital for almost a month for my leg surgery. It feels lonely here at times so I use this app to draw and talk to others. I'd love to connect and share arts with you guys!</div></div>
+
+	<div class="button-container">
+		<button class="navigate"><a href="channel">
+			<div class = "bubble-text">Draw Julia!</div>
+		</button>
+		<button class="navigate"><a href="channel">
+			<div class = "bubble-text">Send Art to Julia</div>
+		</button>
+		<button class="navigate"><a href="channel">
+			<div class = "bubble-text">Even better? Draw together!</div>
+		</button>
+
+	</div>
 </body>
