@@ -18,6 +18,15 @@ urlpatterns = [
     path('support/channel', views.channel),
     path('support/support', views.support),
     path('support/connect', views.connect),
+    path('support/portrait', views.portrait),
+    path('support/solo', views.solo),
+    path('support/sent', views.sent),
+    path('connect/support', views.support),
+    path('connect/channel', views.channel),
+    path('connect/connect', views.connect),
+    path('connect/portrait', views.portrait),
+    path('connect/sent', views.sent),
+    path('connect/solo', views.solo),
     url(r'^(?P<room_name>[^/]+)/$', views.room, name='room'),
 ]
 

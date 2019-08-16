@@ -17,6 +17,15 @@ def connect(request):
 def support(request):
 	return render(request, 'draw/support.html', {})
 
+def portrait(request):
+  return render(request, 'draw/portrait.html', {})
+
+def solo(request):
+  return render(request, 'draw/solo.html', {})
+
+def sent(request):
+  return render(request, 'draw/sent.html', {})
+
 def room(request, room_name):
     return render(request, 'draw/room.html', {
         'room_name_json': mark_safe(json.dumps(room_name))

@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Connect</title>
-
+	<title>Connect with someone through art!</title>
+	<link href="https://fonts.googleapis.com/css?family=Coming+Soon|Raleway&display=swap" rel="stylesheet">
 	<style>
 
 	body {
@@ -117,6 +117,44 @@
 
 		textarea { font-size: 20px; 
 			text-align: center;}
+
+		.speech-bubble {
+		left:60px;
+		top: 380px;
+		position: absolute;
+		background: #FFCCC5;
+		border-radius: 40px;
+		width: 100px;
+		height: 150px;
+		align-self: flex-start;
+		text-align: center;
+		padding: 30px;
+	}
+
+		.speech-bubble:after {
+		content: '';
+		right: 0px;
+		top: 70px;
+		width: 0;
+		height: 0;
+		border: 21px solid transparent;
+		border-left-color: #FFCCC5;
+		border-right: 0;
+		border-bottom: 0;
+		margin-top: -10.5px;
+		margin-right: -21px;
+		position: absolute;
+	}
+
+	.bubble-text {
+		font-size: 16px;
+		font-family: 'Coming Soon', cursive;
+	}
+
+	.connect-text{
+		font-family: 'Raleway', sans-serif;
+		color: #25803E;
+	}
 </style>
 
 </head>
@@ -130,9 +168,8 @@
 			<div class="pic"></div>
 		</div>
 
-
-		<div class="uplaodpic">
-		<h3>Click Me<br>to uplaod a picture<br>for others to draw!</h3>
+		<div class="speech-bubble"><div class="bubble-text">You know what's really fun? Upload your photo so others can draw you!</div></div>
+		<div class="uploadpic">
 		<img src="../../static/stocks/corgi-happy.gif" alt="dog">
 		</div>
 
@@ -150,7 +187,7 @@
 
 
 		<div class="buttoncontainer">
-		<a href="support" class="button" role="button" aria-pressed="true"><h1>Connect Me With Someone!</h1></a>
+		<a href="support" class="button" role="button" aria-pressed="true"><h1><div class="connect-text">Connect Me With Someone!</div></h1></a>
 		</div>
 
 	</div>

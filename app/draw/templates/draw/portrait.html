@@ -23,7 +23,7 @@
       width: 1440px;
       height: 900px;
 
-      background: #C5FDCE;
+      background: #D0E3FF;
     }
     #color-palette {
       width: 70px;
@@ -266,7 +266,7 @@
 </head>
   
 <body>
-    <img src="../../static/stocks/corgionbutt.png"/ width="210px" height="210px">
+    <img src="../../static/stocks/corgi-artist.png"/ width="210px" height="210px">
     <button class="corgi-button"></button>
 
     <div class="canvas-container"><canvas id="myCanvas"></canvas></div>
@@ -278,7 +278,8 @@
     <button class="hide_show_button">Hide/Show</button>
     
      
-  <button class="open-button" onclick="openForm()"><div class="open-chat-text">Open Chat</div></button>
+  <!-- no need for chat in portrait drawing -->
+  <!--<button class="open-button" onclick="openForm()"><div class="open-chat-text">Open Chat</div></button>-->
   <div class="chat-popup" id="myForm">
     <form action="" class="form-container">
       <h1><div class="chat-text">Let's chat!</div></h1>
@@ -298,83 +299,48 @@
 </body>
   
 <script type="text/javascript" canvas="canvas">
+  var openForm;
 
-  function openForm() {
-    document.getElementById("myForm").style.display = "block";
-  }
-
-  function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-  }
-
-  function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+      openForm = function() {
+      document.getElementById("myForm").style.display = "block";
     }
-    
-    return color;
-  }
 
-  var canvas = document.getElementById('myCanvas');
-  paper.setup(canvas);
-
-  var cp = {
-    history: ["#000000"], 
-    options: [],
-    $container: $('#color-palette')
-  }
-
-  var tool = new paper.Tool();
-  var url = window.location.href;
-  var users = {};
-  var userID = Math.random(); 
-  var color = cp.history[cp.history.length-1];
-  var path;
-
-  var drawSocket = new WebSocket('ws://' + window.location.host + '/ws/draw/');
-  var chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/');
-
-  tool.onMouseDown = function(event) {
-      path = new paper.Path();
-      path.add(event.point);
-      path.strokeColor = color;
-  }
-
-  tool.onMouseDrag = function(event) {
-    path.add(event.point);
-  }
-
-  tool.onMouseUp = function(event){
-    var message = JSON.stringify({pathData: path.pathData, color: color, user: userID, url: url});
-    drawSocket.send(message);
-  }
-  
-  drawSocket.onmessage = function(receivedMessage) {
-    var data = JSON.parse(receivedMessage.data);
-    path = new paper.Path(data.pathData);
-    path.strokeColor = data.color;
-  };   
-
-  chatSocket.onmessage = function(receivedMessage) {
-    var data = JSON.parse(receivedMessage.data);
-    var chatMessageData = data.chatMessage
-
-    if (typeof chatMessageData === 'string' || chatMessageData instanceof String) {
-      if (data.user == userID) {
-        $(".chat-messages").append("<li class='chat-message right'>" + chatMessageData + "</li>");
-      } else {
-        $(".chat-messages").append("<li class='chat-message'>" + chatMessageData + "</li>");
-      }
-
-      var messageBody = document.querySelector('#messageBody');
-      messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
-    }
-  }; 
-
+  //all the drawing functions and objects lie here
   window.onload = function() {
+    //add photo svg file as an object
+    var photo = {
+      item:null,
+      lastClicked:null,
+      filePath: '../../static/stocks/julia.svg'
+    };
+
+    var canvas = document.getElementById('myCanvas');
+    //paper.setup(canvas);
+
+    var cp = {
+      history: ["#000000"], 
+      options: [],
+      $container: $('#color-palette')
+    }
+
+
+    var url = window.location.href;
+    var users = {};
+    var userID = Math.random(); 
+    var color = cp.history[cp.history.length-1];
+    var path;
+
+    var drawSocket = new WebSocket('ws://' + window.location.host + '/ws/draw/');
+    var chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/');
+
+    //do open close chat window
+
+
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+
+    
     function createColorPalette(colors) {
       for (var i = colors.length - 1; i >= 0; i--) {
         var $swatch = $("<div>").css("background-color", colors[i]).addClass("swatch");
@@ -397,19 +363,51 @@
     }
 
     function createEraser() {
-      var $swatch = $("<div>").css("background-color", "#FFFFFF").addClass("swatch");
+      var $swatch = $("<div>").css("background-color", "white").addClass("swatch");
       $swatch.click(function(){
         cp.history.push($(this).css("background-color"));
       }); 
       $(".white_button").append($swatch);
     } 
 
+    //both will have drawing function
+    function myDrawingInteraction() {
+      var tool = new paper.Tool();
+
+      tool.onMouseDown = function(event) {
+        path = new paper.Path();
+        path.add(event.point);
+        path.strokeColor = color;
+      }
+
+      tool.onMouseDrag = function(event) {
+        path.add(event.point);
+      }
+
+      tool.onMouseUp = function(event){
+        var message = JSON.stringify({pathData: path.pathData, color: color, user: userID, url: url});
+        drawSocket.send(message);
+      }
+
+    }
+    //add svg on canvas
+    function init(custom) {
+      paper.setup(canvas);
+      getColorsCreatePalette();
+      createEraser();
+      
+      //both functioning can draw. but only one with portrait has portrait as a layer
+      myDrawingInteraction();
+
+      //if true then add portrait
+      if(custom) {
+        paper.project.importSVG(photo.filePath);
+      }
+    }
+
     $("#color-palette").on("click", '.swatch', function() {
       color = cp.history[cp.history.length-1];
     });
-
-    getColorsCreatePalette();
-    createEraser();
 
     let $saveButton = $(".save_button");
     $saveButton.on('click', () => {
@@ -422,8 +420,9 @@
       location.reload();
     })
 
-    let $toggleButton = $(".hide_show_button");
-    let $colorPalette = $("#color-palette")
+    let $toggleButton = $(".hide_show_button"); 
+    let $colorPalette = $("#color-palette") 
+
     $toggleButton.on('click', () => {
       $colorPalette.toggle();
     })
@@ -437,7 +436,40 @@
       chatSocket.send(message);
     });
 
-  }
+    var url = window.location.href;
+    if (url.indexOf("portrait") > -1) {
+      init(true);
+    } else {
+      init(false);
+    }
+
+      //we'll see if sockets are here or within window.onload
+  //guessing it goes inside
+  drawSocket.onmessage = function(receivedMessage) {
+    var data = JSON.parse(receivedMessage.data);
+    path = new paper.Path(data.pathData);
+    path.strokeColor = data.color;
+  };   
+
+  chatSocket.onmessage = function(receivedMessage) {
+    var data = JSON.parse(receivedMessage.data);
+    var chatMessageData = data.chatMessage
+
+    if (typeof chatMessageData === 'string' || chatMessageData instanceof String) {
+      if (data.user == userID) {
+        $(".chat-messages").append("<li class='chat-message right'>" + chatMessageData + "</li>");
+      } else {
+        $(".chat-messages").append("<li class='chat-message'>" + chatMessageData + "</li>");
+      }
+
+      var messageBody = document.querySelector('#messageBody');
+      messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+    }
+  }; 
+} //end of window.onload
+
+
+
   
 </script>
   
