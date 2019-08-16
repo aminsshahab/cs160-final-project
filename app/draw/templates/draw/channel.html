@@ -242,7 +242,7 @@
 
     <div class="canvas-container"><canvas id="myCanvas"></canvas></div>
     <div id="color-palette"></div>
-    <button class="home-button"><a href="index"><img src="../../static/stocks/house.png" width="40px" height="40px"></button>
+<!--     <button class="home-button"><a href="index"><img src="../../static/stocks/house.png" width="40px" height="40px"></button> -->
     <button class="white_button"> </button>
     <button class="save_button">Save</button>
     <button class="reset_button">Reset</button>
@@ -331,14 +331,16 @@
     var data = JSON.parse(receivedMessage.data);
     var chatMessageData = data.chatMessage
 
-    if (data.user == userID) {
-      $(".chat-messages").append("<li class='chat-message right'>" + chatMessageData + "</li>");
-    } else {
-      $(".chat-messages").append("<li class='chat-message'>" + chatMessageData + "</li>");
-    }
+    if (typeof chatMessageData === 'string' || chatMessageData instanceof String) {
+      if (data.user == userID) {
+        $(".chat-messages").append("<li class='chat-message right'>" + chatMessageData + "</li>");
+      } else {
+        $(".chat-messages").append("<li class='chat-message'>" + chatMessageData + "</li>");
+      }
 
-    var messageBody = document.querySelector('#messageBody');
-    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+      var messageBody = document.querySelector('#messageBody');
+      messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+    }
   }; 
 
   window.onload = function() {
