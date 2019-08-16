@@ -7,6 +7,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Join Drawing Channel</title>
 
+  <link href="https://fonts.googleapis.com/css?family=Butterfly+Kids|Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
   <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
@@ -121,7 +123,7 @@
     
 /*     Code for chatbox taken from: <https://www.w3schools.com/howto/howto_js_popup_chat.asp> */
     .open-button {
-      background-color: #555;
+      background-color: #FFE8FB;
       color: white;
       padding: 16px 20px;
       border: none;
@@ -131,6 +133,7 @@
       bottom: 23px;
       right: 28px;
       width: 280px;
+      border-radius: 15px;
     }
     /* The popup chat - hidden by default */
     .chat-popup {
@@ -144,9 +147,9 @@
     }
     /* Add styles to the form container */
     .form-container {
-      max-width: 300px;
+      max-width: 500px;
       padding: 10px;
-      background-color: white;
+      background-color: #FFFFFF;
     }
     /* Full-width textarea */
     .form-container textarea {
@@ -184,8 +187,8 @@
     }
 
     .message-container {
-      background: #f1f1f1;
-      height: 15em;
+      background: #FFE8FB;
+      height: 300px;
       margin-bottom: 1em;
       position: relative;
       padding-left: 0;
@@ -196,7 +199,7 @@
       position:   absolute;
       bottom:     0;
       width:      100%;
-      max-height: 200px;
+      max-height: 100px;
       padding-inline-start: 0;
       padding-left: 1em;
       padding-right: 1em;
@@ -232,6 +235,30 @@
     padding: 10px;
     background-color: #FFC2C2;
   }
+
+  .chat-text {
+    font-family: 'Butterfly Kids', cursive;
+    font-size: 30px;
+  }
+
+
+      .chat-button-container {
+      display: flex;
+      flex-direction: row;
+      /*flex-wrap: wrap-reverse;*/
+      justify-content: left;
+      /*align-items: flex-start;*/
+      align-content: flex-start;
+      width: 300px;
+    }
+
+    .button-text{
+      font-family: 'Gloria Hallelujah', cursive;
+    }
+
+    .open-chat-text {
+      color: #B14385;
+    }
     </style>
 
 </head>
@@ -249,18 +276,20 @@
     <button class="hide_show_button">Hide/Show</button>
     
      
-  <button class="open-button" onclick="openForm()">Chat</button>
+  <button class="open-button" onclick="openForm()"><div class="open-chat-text">Open Chat</div></button>
   <div class="chat-popup" id="myForm">
     <form action="" class="form-container">
-      <h1>Chat</h1>
+      <h1><div class="chat-text">Let's chat!</div></h1>
       <div class="message-container">
         <ul class="chat-messages" id="messageBody">
         </ul>
       </div>
-      <label for="msg"><b>Message</b></label>
-      <textarea placeholder="Type message.." name="msg" required></textarea>
-      <button type="submit" class="btn">Send</button>
-      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      <!--<label for="msg"><b>Message</b></label>-->
+      <textarea placeholder="Share some thoughts with your friends!" font-family="'Open Sans', sans-serif;" name="msg" required></textarea>
+      <div class="chat-button-container">
+        <button type="submit" class="btn"><div class="button-text">Send</div></button>
+        <button type="button" class="btn cancel" onclick="closeForm()"><div class="button-text">Close</div></button>
+      </div>
     </form>
   </div>
   
