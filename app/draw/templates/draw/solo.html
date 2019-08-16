@@ -364,7 +364,7 @@
     drawSocket.send(message);
   }
   
-  drawSocket.onmessage = function(receivedMessage) {
+  /*drawSocket.onmessage = function(receivedMessage) {
     var data = JSON.parse(receivedMessage.data);
     path = new paper.Path(data.pathData);
     path.strokeColor = data.color;
@@ -385,7 +385,7 @@
       messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
     }
   }; 
-
+ */
   window.onload = function() {
     function createColorPalette(colors) {
       for (var i = colors.length - 1; i >= 0; i--) {
